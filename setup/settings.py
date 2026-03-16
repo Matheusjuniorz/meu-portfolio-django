@@ -56,10 +56,12 @@ ROOT_URLCONF = 'setup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # Adicione BASE_DIR / 'templates' se a pasta estiver na raiz
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -67,7 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'setup.wsgi.application'
 
 
@@ -77,14 +78,13 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nome_do_seu_banco',
+        'NAME': 'meu_portfolio',  # <--- Coloque o nome que você criou no MySQL
         'USER': 'matheus',
         'PASSWORD': '22052002mj',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -127,3 +127,15 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Configurações de E-mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'batistam032@gmail.com'
+# IMPORTANTE: Não use sua senha normal aqui. 
+# Você precisa gerar uma "Senha de App" na sua conta Google.
+EMAIL_HOST_PASSWORD = 'lnez omcn juuv pqly'                
+DEFAULT_FROM_EMAIL = 'batistam032@gmail.com'

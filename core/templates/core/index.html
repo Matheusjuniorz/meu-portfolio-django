@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matheus Junior | Backend Developer</title>
+    <title>Matheus Junior | Backend Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -31,6 +31,12 @@
             z-index: -1;
             opacity: 0.5;
         }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="bg-[#0f172a] text-slate-200 font-sans selection:bg-emerald-500/30">
@@ -56,12 +62,12 @@
 
     <header id="home" class="max-w-6xl mx-auto pt-24 pb-16 px-6 grid md:grid-cols-2 gap-12 items-center">
         <div class="text-left">
-            <span class="text-emerald-400 font-mono mb-4 block tracking-[0.3em] text-xs uppercase font-bold italic">Software Engineer & Backend Specialist</span>
+            <span class="text-emerald-400 font-mono mb-4 block tracking-[0.3em] text-xs uppercase font-bold italic">Software Engineering • Backend Specialist</span>
             <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white tracking-tighter">
-                MATHEUS <br> <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent italic">JUNIOR</span>
+                MATHEUS <br> <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent italic uppercase">DevSystem</span>
             </h2>
             <p class="text-slate-400 text-lg max-w-lg mb-8 leading-relaxed">
-                Construindo a inteligência por trás de interfaces modernas. Especialista em ecossistema <b>Python/Django</b>, APIs escaláveis e manipulação estratégica de dados.
+                Arquitetando o core de aplicações robustas. Especialista em ecossistema <b>Python/Django</b>, integração de bancos de dados e automação de fluxos de dados.
             </p>
             <div class="flex gap-4 items-center">
                 <a href="#contato" class="bg-emerald-500 hover:bg-emerald-400 px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-emerald-500/25 text-[#0f172a] uppercase tracking-tighter">Bora Conversar?</a>
@@ -84,53 +90,61 @@
     <section id="sobre" class="max-w-6xl mx-auto py-20 px-6 border-t border-slate-800/50">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             <div class="order-2 md:order-1">
-                <h3 class="text-3xl font-bold mb-6 italic text-white underline decoration-emerald-500 decoration-4 underline-offset-8">Core Skills</h3>
+                <h3 class="text-3xl font-bold mb-6 italic text-white underline decoration-emerald-500 decoration-4 underline-offset-8">Expertise Técnica</h3>
                 <p class="text-slate-400 leading-relaxed mb-6 italic">
-                    Focado em transformar lógica complexa em sistemas eficientes. Minha experiência envolve arquitetura de <b>APIs REST</b>, automação de processos e gestão de bancos de dados relacionais para aplicações de alta performance.
+                    Minha missão é garantir que a base do seu software seja sólida, segura e escalável. Utilizo <b>Django</b> para criar lógicas de negócio complexas e <b>MySQL</b> para gerenciar dados com precisão cirúrgica.
                 </p>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="glass p-5 rounded-2xl border-l-4 border-emerald-500">
-                        <span class="block font-bold text-emerald-400 text-xl italic uppercase">Python</span>
-                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Django Expert</span>
+                        <span class="block font-bold text-emerald-400 text-xl italic uppercase underline">Django</span>
+                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Backend Lead</span>
                     </div>
                     <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
-                        <span class="block font-bold text-blue-400 text-xl italic uppercase">MySQL</span>
-                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Data integrity</span>
+                        <span class="block font-bold text-blue-400 text-xl italic uppercase underline">MySQL</span>
+                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Database Design</span>
                     </div>
                 </div>
             </div>
             <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
                 <div class="glass p-6 rounded-3xl text-center hover:border-emerald-500/50 transition">
-                    <i class="fas fa-terminal text-3xl text-emerald-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Django Rest Framework</p>
+                    <i class="fas fa-layer-group text-3xl text-emerald-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Web Services / API</p>
                 </div>
                 <div class="glass p-6 rounded-3xl text-center hover:border-blue-500/50 transition">
-                    <i class="fas fa-file-csv text-3xl text-blue-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">ETL & Exportação</p>
+                    <i class="fas fa-database text-3xl text-blue-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Relational Data</p>
                 </div>
                 <div class="glass p-6 rounded-3xl text-center hover:border-purple-500/50 transition">
-                    <i class="fas fa-microchip text-3xl text-purple-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Business Logic</p>
+                    <i class="fas fa-file-invoice text-3xl text-purple-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Report Generation</p>
                 </div>
                 <div class="glass p-6 rounded-3xl text-center hover:border-cyan-500/50 transition">
-                    <i class="fas fa-code-branch text-3xl text-cyan-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Arquitetura MVC</p>
+                    <i class="fas fa-shield-alt text-3xl text-cyan-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Security Logic</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="projetos" class="max-w-6xl mx-auto py-20 px-6">
-        <h3 class="text-3xl font-bold italic mb-12 text-white italic underline decoration-blue-500 decoration-2 underline-offset-8">Production Ready Projects</h3>
+        <h3 class="text-3xl font-bold italic mb-12 text-white italic underline decoration-blue-500 decoration-2 underline-offset-8 uppercase tracking-widest text-center">Current Repository</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
             {% for projeto in projetos %}
             <div class="glass group rounded-3xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
                 <div class="h-48 overflow-hidden relative">
-                    <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
+                    {% if projeto.imagem %}
+                        <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
+                    {% else %}
+                        <div class="w-full h-full bg-slate-800 flex items-center justify-center">
+                            <i class="fas fa-code text-4xl text-slate-700"></i>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="p-6">
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition text-white italic">{{ projeto.titulo }}</h4>
+                    <h4 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition text-white italic uppercase tracking-tighter">{{ projeto.titulo }}</h4>
                     <p class="text-slate-400 text-xs line-clamp-2 mb-4">{{ projeto.descricao }}</p>
+                    
                     <div class="flex flex-wrap gap-2 mb-6">
                         {% for tech in projeto.tecnologias.split %}
                         <span class="text-[9px] uppercase font-black bg-slate-900/80 text-emerald-400 px-2 py-1 rounded border border-slate-700">
@@ -138,41 +152,64 @@
                         </span>
                         {% endfor %}
                     </div>
+                    
                     <a href="{{ projeto.link_github }}" target="_blank" class="text-[10px] font-black flex items-center gap-2 text-white hover:text-emerald-400 transition tracking-widest">
-                        CHECK REPOSITORY <i class="fas fa-arrow-right text-[8px]"></i>
+                        SOURCE CODE <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
             </div>
             {% empty %}
-            <div class="col-span-3 text-center py-20 border border-slate-800 rounded-3xl glass">
-                <p class="text-slate-500 italic uppercase font-bold tracking-[0.2em] text-xs">Waiting for data from MySQL...</p>
+            <div class="col-span-1 md:col-span-3 text-center py-20 border border-slate-800 rounded-3xl glass">
+                <p class="text-slate-500 italic uppercase font-bold tracking-[0.2em] text-xs">Aguardando Pull Request do MySQL... (Nenhum projeto encontrado)</p>
             </div>
             {% endfor %}
+
         </div>
     </section>
 
     <section id="contato" class="max-w-4xl mx-auto py-20 px-6">
         <div class="glass p-10 rounded-[40px] border border-emerald-500/20 text-center relative overflow-hidden">
             <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl"></div>
-            <h3 class="text-4xl font-bold mb-4 italic text-white uppercase tracking-tighter italic">Let's <span class="text-emerald-500">Sync?</span></h3>
-            <p class="text-slate-400 mb-10 text-sm italic font-medium">Disponível para novos desafios técnicos e parcerias em desenvolvimento.</p>
-            <form action="#" method="POST" class="grid grid-cols-1 gap-4 text-left">
+            <h3 class="text-4xl font-bold mb-4 italic text-white uppercase tracking-tighter italic">Init <span class="text-emerald-500">Connection</span></h3>
+            <p class="text-slate-400 mb-10 text-sm italic font-medium">Os dados enviados serão processados via Django e armazenados em MySQL.</p>
+            
+            {% if messages %}
+                {% for message in messages %}
+                <div class="django-message mb-6 p-4 rounded-xl glass border border-emerald-500/50 text-emerald-400 font-bold text-sm animate-fade-up">
+                    <i class="fas fa-check-circle mr-2"></i> {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <form action="{% url 'home' %}" method="POST" class="grid grid-cols-1 gap-4 text-left">
                 {% csrf_token %}
                 <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Seu Nome" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm">
-                    <input type="email" placeholder="E-mail" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm">
+                    <input type="text" name="nome" placeholder="Nome Completo" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white">
+                    <input type="email" name="email" placeholder="E-mail de Contato" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white">
                 </div>
-                <textarea rows="4" placeholder="Como posso ajudar no seu ecossistema?" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm"></textarea>
+                <textarea name="mensagem" rows="4" placeholder="Descreva sua necessidade técnica..." required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white"></textarea>
                 <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-[#0f172a] font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
-                    Estabelecer Conexão
+                    Confirmar Envio [POST]
                 </button>
             </form>
         </div>
     </section>
 
     <footer class="py-12 text-center text-slate-500 text-[10px] font-bold tracking-[0.3em] border-t border-slate-800/50 uppercase">
-        <p>&copy; 2026 Matheus Junior B. L. Pinho • <span class="text-emerald-500 italic">Backend Developer</span></p>
+        <p>&copy; 2026 Matheus Junior B. L. Pinho • <span class="text-emerald-500 italic">Backend Systems Specialist</span></p>
     </footer>
+
+    <script>
+        setTimeout(function() {
+            const messages = document.querySelectorAll('.django-message');
+            messages.forEach(msg => {
+                msg.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                msg.style.opacity = "0";
+                msg.style.transform = "translateY(-10px)";
+                setTimeout(() => msg.remove(), 600);
+            });
+        }, 5000);
+    </script>
 
 </body>
 </html>

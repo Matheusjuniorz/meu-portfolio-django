@@ -16,16 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home
-# ADICIONE ESTAS DUAS LINHAS ABAIXO:
+from core.views import home, exportar_contatos_csv 
 from django.conf import settings
 from django.conf.urls.static import static
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    
+    # Rota Principal: O name='home' é vital para o action do seu formulário HTML
+    path('', home, name='home'),
+    
+    # Rota de Exportação: Para você baixar os dados do MySQL direto pelo navegador
+    path('exportar-contatos/', exportar_contatos_csv, name='exportar_contatos'),
 ] 
 
-# E ESTA LINHA AO FINAL:
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
