@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Junior | Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .glass {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hexagon {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+        
+        .hexagon-container::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: linear-gradient(45deg, #10b981, #3b82f6);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200 font-sans selection:bg-emerald-500/30">
+
+    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-800/50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-black tracking-tighter text-white uppercase">
+                Matheus<span class="text-emerald-400 italic">.Junior</span>
+            </h1>
+            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-400 italic">
+                <a href="#home" class="hover:text-emerald-400 transition">Início</a>
+                <a href="#sobre" class="hover:text-emerald-400 transition">Perfil</a>
+                <a href="#projetos" class="hover:text-emerald-400 transition">Projetos</a>
+                <a href="#contato" class="bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 px-5 py-2 rounded-full hover:bg-emerald-500 hover:text-[#0f172a] transition">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="max-w-6xl mx-auto pt-24 pb-16 px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div class="text-left">
+            <span class="text-emerald-400 font-mono mb-4 block tracking-[0.3em] text-xs uppercase font-bold italic">Software Engineer & Backend Specialist</span>
+            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white tracking-tighter">
+                MATHEUS <br> <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent italic">JUNIOR</span>
+            </h2>
+            <p class="text-slate-400 text-lg max-w-lg mb-8 leading-relaxed">
+                Construindo a inteligência por trás de interfaces modernas. Especialista em ecossistema <b>Python/Django</b>, APIs escaláveis e manipulação estratégica de dados.
+            </p>
+            <div class="flex gap-4 items-center">
+                <a href="#contato" class="bg-emerald-500 hover:bg-emerald-400 px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-emerald-500/25 text-[#0f172a] uppercase tracking-tighter">Bora Conversar?</a>
+                <div class="flex items-center gap-4 ml-6 text-slate-500">
+                    <a href="https://github.com" target="_blank" class="hover:text-white transition text-2xl"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-white transition text-2xl"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="relative flex justify-center">
+            <div class="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full h-80 w-80 mx-auto animate-pulse"></div>
+            <div class="hexagon-container relative">
+                <div class="hexagon w-72 h-80 bg-slate-800 border-2 border-emerald-500/30 overflow-hidden relative z-10">
+                    <img src="{% static 'core/img/matheus.jpg' %}" alt="Matheus Junior" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="sobre" class="max-w-6xl mx-auto py-20 px-6 border-t border-slate-800/50">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <h3 class="text-3xl font-bold mb-6 italic text-white underline decoration-emerald-500 decoration-4 underline-offset-8">Core Skills</h3>
+                <p class="text-slate-400 leading-relaxed mb-6 italic">
+                    Focado em transformar lógica complexa em sistemas eficientes. Minha experiência envolve arquitetura de <b>APIs REST</b>, automação de processos e gestão de bancos de dados relacionais para aplicações de alta performance.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass p-5 rounded-2xl border-l-4 border-emerald-500">
+                        <span class="block font-bold text-emerald-400 text-xl italic uppercase">Python</span>
+                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Django Expert</span>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
+                        <span class="block font-bold text-blue-400 text-xl italic uppercase">MySQL</span>
+                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Data integrity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
+                <div class="glass p-6 rounded-3xl text-center hover:border-emerald-500/50 transition">
+                    <i class="fas fa-terminal text-3xl text-emerald-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Django Rest Framework</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center hover:border-blue-500/50 transition">
+                    <i class="fas fa-file-csv text-3xl text-blue-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">ETL & Exportação</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center hover:border-purple-500/50 transition">
+                    <i class="fas fa-microchip text-3xl text-purple-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Business Logic</p>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center hover:border-cyan-500/50 transition">
+                    <i class="fas fa-code-branch text-3xl text-cyan-500 mb-2"></i>
+                    <p class="text-[10px] font-bold uppercase tracking-tighter">Arquitetura MVC</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="max-w-6xl mx-auto py-20 px-6">
+        <h3 class="text-3xl font-bold italic mb-12 text-white italic underline decoration-blue-500 decoration-2 underline-offset-8">Production Ready Projects</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for projeto in projetos %}
+            <div class="glass group rounded-3xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
+                <div class="h-48 overflow-hidden relative">
+                    <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
+                </div>
+                <div class="p-6">
+                    <h4 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition text-white italic">{{ projeto.titulo }}</h4>
+                    <p class="text-slate-400 text-xs line-clamp-2 mb-4">{{ projeto.descricao }}</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {% for tech in projeto.tecnologias.split %}
+                        <span class="text-[9px] uppercase font-black bg-slate-900/80 text-emerald-400 px-2 py-1 rounded border border-slate-700">
+                            {{ tech }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ projeto.link_github }}" target="_blank" class="text-[10px] font-black flex items-center gap-2 text-white hover:text-emerald-400 transition tracking-widest">
+                        CHECK REPOSITORY <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-20 border border-slate-800 rounded-3xl glass">
+                <p class="text-slate-500 italic uppercase font-bold tracking-[0.2em] text-xs">Waiting for data from MySQL...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="contato" class="max-w-4xl mx-auto py-20 px-6">
+        <div class="glass p-10 rounded-[40px] border border-emerald-500/20 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl"></div>
+            <h3 class="text-4xl font-bold mb-4 italic text-white uppercase tracking-tighter italic">Let's <span class="text-emerald-500">Sync?</span></h3>
+            <p class="text-slate-400 mb-10 text-sm italic font-medium">Disponível para novos desafios técnicos e parcerias em desenvolvimento.</p>
+            <form action="#" method="POST" class="grid grid-cols-1 gap-4 text-left">
+                {% csrf_token %}
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Seu Nome" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm">
+                    <input type="email" placeholder="E-mail" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm">
+                </div>
+                <textarea rows="4" placeholder="Como posso ajudar no seu ecossistema?" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm"></textarea>
+                <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-[#0f172a] font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+                    Estabelecer Conexão
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-slate-500 text-[10px] font-bold tracking-[0.3em] border-t border-slate-800/50 uppercase">
+        <p>&copy; 2026 Matheus Junior B. L. Pinho • <span class="text-emerald-500 italic">Backend Developer</span></p>
+    </footer>
+
+</body>
+</html>
