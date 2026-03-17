@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Projeto, Contato
 
-# Configurações do painel
 admin.site.site_header = "Matheus Junior | Backend Management"
 admin.site.index_title = "Painel de Controle de Dados"
 

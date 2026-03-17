@@ -22,10 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # Rota Principal: O name='home' é vital para o action do seu formulário HTML
     path('', home, name='home'),
     
-    # Rota de Exportação: Para você baixar os dados do MySQL direto pelo navegador
     path('exportar-contatos/', exportar_contatos_csv, name='exportar_contatos'),
 ] 
 

@@ -1,0 +1,22 @@
+# Ambiente Virtual
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Banco de Dados Local (SQLite)
+*.sqlite3
+
+# Arquivos de Sistema e IDEs
+.vscode/
+.idea/
+.DS_Store
+db.sqlite3-journal
+
+# Arquivos de Mídia e Estáticos Coletados
+media/
+staticfiles/
+
+# Variáveis de Ambiente (Segurança)
+.env

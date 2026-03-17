@@ -1,215 +1,343 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matheus Junior | Backend Specialist</title>
+    <title>Matheus Junior | Arquiteto de Soluções Full Stack</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .glass {
-            background: rgba(30, 41, 59, 0.75);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .hexagon {
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-        }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
-        
-        .hexagon-container::after {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            background: linear-gradient(45deg, #10b981, #3b82f6);
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            z-index: -1;
-            opacity: 0.5;
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --neon-emerald: #10b981;
+            --neon-blue: #3b82f6;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #020617;
+            color: #cbd5e1; 
+            cursor: none;
+            line-height: 1.6;
         }
-        .animate-fade-up { animation: fadeUp 0.5s ease-out forwards; }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--neon-emerald);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .neon-line {
+            height: 1px; width: 100%;
+            background: linear-gradient(90deg, transparent, var(--neon-emerald), transparent);
+        }
+
+        .hexagon-frame {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .cursor-blink { animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .progress-bg { height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 10px; }
+        
+        .exp-border { border-left: 2px solid rgba(16, 185, 129, 0.2); }
     </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 font-sans selection:bg-emerald-500/30">
+<body class="selection:bg-emerald-500 selection:text-white">
 
-    <div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+    <div id="cursor" class="hidden md:block"></div>
+
+    <div class="fixed inset-0 -z-50 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-emerald-600/10 blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-blue-600/5 blur-[120px]"></div>
     </div>
 
-    <nav class="sticky top-0 z-50 glass border-b border-slate-800/50 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-black tracking-tighter text-white uppercase">
-                Matheus<span class="text-emerald-400 italic">.Junior</span>
+    <nav class="fixed top-0 w-full z-[100] px-6 py-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center glass-card px-10 py-5 rounded-full">
+            <h1 class="mono font-bold text-white tracking-tighter uppercase text-lg">
+                M<span class="text-emerald-500 italic">.Junior</span>
             </h1>
-            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-400 italic">
-                <a href="#home" class="hover:text-emerald-400 transition">Início</a>
-                <a href="#sobre" class="hover:text-emerald-400 transition">Perfil</a>
+            <div class="hidden md:flex gap-10 mono text-xs uppercase font-bold tracking-widest">
+                <a href="#inicio" class="hover:text-emerald-400 transition">Inicio</a>
+                <a href="#sobre" class="hover:text-emerald-400 transition">Sobre</a>
+                <a href="#experiencia" class="hover:text-emerald-400 transition">Experiência</a>
                 <a href="#projetos" class="hover:text-emerald-400 transition">Projetos</a>
-                <a href="#contato" class="bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 px-5 py-2 rounded-full hover:bg-emerald-500 hover:text-[#0f172a] transition">Contato</a>
+                <a href="#contato" class="text-emerald-400 border border-emerald-400/30 px-5 py-2 rounded-full hover:bg-emerald-500 hover:text-slate-900 transition">Contato</a>
             </div>
         </div>
     </nav>
 
-    <header id="home" class="max-w-6xl mx-auto pt-24 pb-16 px-6 grid md:grid-cols-2 gap-12 items-center">
-        <div class="text-left">
-            <span class="text-emerald-400 font-mono mb-4 block tracking-[0.3em] text-xs uppercase font-bold italic">Software Engineering • Backend Specialist</span>
-            <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white tracking-tighter">
-                MATHEUS <br> <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent italic uppercase">DevSystem</span>
-            </h2>
-            <p class="text-slate-400 text-lg max-w-lg mb-8 leading-relaxed">
-                Arquitetando o core de aplicações robustas. Especialista em ecossistema <b>Python/Django</b>, integração de bancos de dados e automação de fluxos de dados.
-            </p>
-            <div class="flex gap-4 items-center">
-                <a href="#contato" class="bg-emerald-500 hover:bg-emerald-400 px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-emerald-500/25 text-[#0f172a] uppercase tracking-tighter">Bora Conversar?</a>
-                <div class="flex items-center gap-4 ml-6 text-slate-500">
-                    <a href="https://github.com" target="_blank" class="hover:text-white transition text-2xl"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="hover:text-white transition text-2xl"><i class="fab fa-linkedin"></i></a>
+    <header id="inicio" class="min-h-screen flex items-center pt-24 px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="inline-block px-6 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mono text-xs text-emerald-400 uppercase tracking-widest">
+                    Arquiteto de Soluções Full Stack
+                </div>
+                <h2 class="text-7xl md:text-9xl font-black text-white leading-[0.9] tracking-tighter italic uppercase">
+                    Matheus <br> 
+                    <span id="typewriter" class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"></span><span class="text-white cursor-blink">|</span>
+                </h2>
+                <p class="text-slate-300 text-xl max-w-lg leading-relaxed font-light">
+                    Transformando lógica complexa em <span class="text-white font-medium">experiências elegantes</span>. Focado em performance, escalabilidade e no ecossistema Python.
+                </p>
+                
+                <div class="flex flex-wrap gap-8 items-center">
+                    <a href="#sobre" class="bg-emerald-500 text-slate-950 px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white transition-all transform hover:scale-105">
+                        Conhecer Trajetória
+                    </a>
+                    <div class="flex gap-6">
+                        <a href="https://github.com/Matheusjuniorz" target="_blank" class="text-2xl text-slate-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/matheus-junior-5a1a1b2a1/" target="_blank" class="text-2xl text-slate-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="relative flex justify-center">
-            <div class="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full h-80 w-80 mx-auto animate-pulse"></div>
-            <div class="hexagon-container relative">
-                <div class="hexagon w-72 h-80 bg-slate-800 border-2 border-emerald-500/30 overflow-hidden relative z-10">
-                    <img src="{% static 'core/img/matheus.jpg' %}" alt="Matheus Junior" class="w-full h-full object-cover">
+
+            <div class="relative flex justify-center reveal">
+                <div class="hexagon-frame w-96 h-[420px] bg-slate-800 relative z-10 p-[2px] overflow-hidden group shadow-2xl">
+                    <img src="https://github.com/Matheusjuniorz.png" alt="Matheus" class="hexagon-frame w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-700">
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="sobre" class="max-w-6xl mx-auto py-20 px-6 border-t border-slate-800/50">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="order-2 md:order-1">
-                <h3 class="text-3xl font-bold mb-6 italic text-white underline decoration-emerald-500 decoration-4 underline-offset-8">Expertise Técnica</h3>
-                <p class="text-slate-400 leading-relaxed mb-6 italic">
-                    Minha missão é garantir que a base do seu software seja sólida, segura e escalável. Utilizo <b>Django</b> para criar lógicas de negócio complexas e <b>MySQL</b> para gerenciar dados com precisão cirúrgica.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass p-5 rounded-2xl border-l-4 border-emerald-500">
-                        <span class="block font-bold text-emerald-400 text-xl italic uppercase underline">Django</span>
-                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Backend Lead</span>
-                    </div>
-                    <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
-                        <span class="block font-bold text-blue-400 text-xl italic uppercase underline">MySQL</span>
-                        <span class="text-xs text-slate-500 font-bold tracking-widest uppercase">Database Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
-                <div class="glass p-6 rounded-3xl text-center hover:border-emerald-500/50 transition">
-                    <i class="fas fa-layer-group text-3xl text-emerald-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Web Services / API</p>
-                </div>
-                <div class="glass p-6 rounded-3xl text-center hover:border-blue-500/50 transition">
-                    <i class="fas fa-database text-3xl text-blue-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Relational Data</p>
-                </div>
-                <div class="glass p-6 rounded-3xl text-center hover:border-purple-500/50 transition">
-                    <i class="fas fa-file-invoice text-3xl text-purple-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Report Generation</p>
-                </div>
-                <div class="glass p-6 rounded-3xl text-center hover:border-cyan-500/50 transition">
-                    <i class="fas fa-shield-alt text-3xl text-cyan-500 mb-2"></i>
-                    <p class="text-[10px] font-bold uppercase tracking-tighter">Security Logic</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="neon-line"></div>
 
-    <section id="projetos" class="max-w-6xl mx-auto py-20 px-6">
-        <h3 class="text-3xl font-bold italic mb-12 text-white italic underline decoration-blue-500 decoration-2 underline-offset-8 uppercase tracking-widest text-center">Current Repository</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {% for projeto in projetos %}
-            <div class="glass group rounded-3xl overflow-hidden hover:translate-y-[-8px] transition-all duration-300">
-                <div class="h-48 overflow-hidden relative">
-                    {% if projeto.imagem %}
-                        <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                    {% else %}
-                        <div class="w-full h-full bg-slate-800 flex items-center justify-center">
-                            <i class="fas fa-code text-4xl text-slate-700"></i>
+    <section id="sobre" class="py-40 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-16 items-start">
+                <div class="reveal">
+                    <h3 class="mono text-emerald-500 text-xs font-bold uppercase tracking-[0.5em] mb-8">// O_DESENVOLVEDOR</h3>
+                    <h4 class="text-6xl font-bold text-white tracking-tighter italic uppercase">Matheus <br> Junior</h4>
+                </div>
+                <div class="lg:col-span-2 space-y-10 reveal text-slate-300">
+                    <p class="text-2xl text-white leading-snug font-medium">
+                        "Não apenas escrevo código; construo pontes digitais entre problemas complexos e usuários satisfeitos."
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Sou apaixonado por tecnologia e movido pelo desafio de transformar café e lógica pura em soluções tangíveis. Com anos de dedicação ao desenvolvimento <b>Full Stack</b>, especializei-me em arquitetar sistemas robustos e escaláveis, tendo o ecossistema <b>Django</b> como meu principal aliado no backend.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Acredito que a verdadeira sofisticação de um software reside na sua simplicidade de uso. Por isso, uno a robustez do Python com a fluidez do JavaScript moderno e a elegância do Tailwind CSS para entregar interfaces responsivas e intuitivas. Meu foco é sempre no <b>Clean Code</b> e em práticas que garantem a sustentabilidade do projeto a longo prazo.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 pt-6">
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <span class="block text-3xl font-bold text-emerald-400">2+</span>
+                            <span class="mono text-[10px] uppercase tracking-widest text-slate-500">Anos de Código</span>
                         </div>
-                    {% endif %}
-                </div>
-                <div class="p-6">
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition text-white italic uppercase tracking-tighter">{{ projeto.titulo }}</h4>
-                    <p class="text-slate-400 text-xs line-clamp-2 mb-4">{{ projeto.descricao }}</p>
-                    
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        {% for tech in projeto.tecnologias.split %}
-                        <span class="text-[9px] uppercase font-black bg-slate-900/80 text-emerald-400 px-2 py-1 rounded border border-slate-700">
-                            {{ tech }}
-                        </span>
-                        {% endfor %}
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <span class="block text-3xl font-bold text-blue-400">15+</span>
+                            <span class="mono text-[10px] uppercase tracking-widest text-slate-500">Projetos Ativos</span>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl text-center">
+                            <span class="block text-3xl font-bold text-yellow-400">100%</span>
+                            <span class="mono text-[10px] uppercase tracking-widest text-slate-500">Clean Code</span>
+                        </div>
                     </div>
-                    
-                    <a href="{{ projeto.link_github }}" target="_blank" class="text-[10px] font-black flex items-center gap-2 text-white hover:text-emerald-400 transition tracking-widest">
-                        SOURCE CODE <i class="fas fa-arrow-right text-[8px]"></i>
-                    </a>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-span-1 md:col-span-3 text-center py-20 border border-slate-800 rounded-3xl glass">
-                <p class="text-slate-500 italic uppercase font-bold tracking-[0.2em] text-xs">Aguardando Pull Request do MySQL... (Nenhum projeto encontrado)</p>
-            </div>
-            {% endfor %}
-
         </div>
     </section>
 
-    <section id="contato" class="max-w-4xl mx-auto py-20 px-6">
-        <div class="glass p-10 rounded-[40px] border border-emerald-500/20 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl"></div>
-            <h3 class="text-4xl font-bold mb-4 italic text-white uppercase tracking-tighter italic">Init <span class="text-emerald-500">Connection</span></h3>
-            <p class="text-slate-400 mb-10 text-sm italic font-medium">Os dados enviados serão processados via Django e armazenados em MySQL.</p>
-            
-            {% if messages %}
-                {% for message in messages %}
-                <div class="django-message mb-6 p-4 rounded-xl glass border border-emerald-500/50 text-emerald-400 font-bold text-sm animate-fade-up">
-                    <i class="fas fa-check-circle mr-2"></i> {{ message }}
+    <section id="experiencia" class="py-40 px-6 bg-slate-900/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24">
+                <div class="reveal">
+                    <h3 class="mono text-emerald-500 text-xs font-bold uppercase tracking-[0.5em] mb-12">#01 Experiência</h3>
+                    <div class="space-y-12 exp-border ml-4">
+                        <div class="relative pl-10">
+                            <div class="absolute w-4 h-4 bg-emerald-500 rounded-full -left-[9px] top-2 shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+                            <span class="mono text-xs text-emerald-400">2023 - Presente</span>
+                            <h5 class="text-2xl font-bold text-white mt-2">Desenvolvedor Full Stack Freelance</h5>
+                            <p class="text-slate-400 mt-4 leading-relaxed">Assumi a liderança técnica em projetos variados, com foco especial no ecossistema Django. Fui responsável pela concepção da arquitetura RESTful, otimização de queries SQL para performance e orquestração de deploys seguros utilizando containers Docker.</p>
+                        </div>
+                        <div class="relative pl-10 opacity-70">
+                            <div class="absolute w-4 h-4 bg-slate-700 rounded-full -left-[9px] top-2"></div>
+                            <span class="mono text-xs text-slate-500">2022 - 2023</span>
+                            <h5 class="text-2xl font-bold text-white mt-2">Desenvolvedor Python & Automação</h5>
+                            <p class="text-slate-400 mt-4 leading-relaxed">Desenvolvi scripts complexos de automação de processos e web scraping, reduzindo tarefas manuais repetitivas. Criei painéis dinâmicos para visualização e análise de dados em tempo real utilizando bibliotecas como Pandas e Plotly.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="reveal" style="transition-delay: 0.2s">
+                    <h3 class="mono text-emerald-500 text-xs font-bold uppercase tracking-[0.5em] mb-12">#02 Mastery</h3>
+                    <div class="space-y-10">
+                        <div class="group">
+                            <div class="flex justify-between mono text-sm mb-4 group-hover:text-emerald-400 transition text-slate-400">
+                                <span>Django & Ecossistema Python</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-emerald-500 w-[90%]"></div></div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between mono text-sm mb-4 group-hover:text-blue-400 transition text-slate-500">
+                                <span>PostgreSQL & MySQL</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-blue-500 w-[85%]"></div></div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between mono text-sm mb-4 group-hover:text-yellow-400 transition text-slate-500">
+                                <span>Frontend (Tailwind, JS ES6)</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-yellow-500 w-[92%]"></div></div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between mono text-sm mb-4 group-hover:text-purple-400 transition text-slate-500">
+                                <span>API Design & Docker</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-purple-500 w-[88%]"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="py-40 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 reveal">
+                <div>
+                    <h3 class="mono text-emerald-500 text-xs font-bold uppercase tracking-[0.5em] mb-8">#03 Portfolio</h3>
+                    <h4 class="text-6xl font-bold text-white tracking-tighter italic uppercase">Trabalhos</h4>
+                </div>
+                <a href="https://github.com/Matheusjuniorz" target="_blank" class="mt-8 md:mt-0 mono text-sm text-emerald-400 border-b-2 border-emerald-500/30 pb-2 hover:text-white transition">Repositório Completo</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for projeto in projetos %}
+                <div class="reveal group h-full">
+                    <div class="glass-card p-6 rounded-[3rem] h-full flex flex-col">
+                        <div class="relative w-full h-48 mb-8 overflow-hidden rounded-[2rem] bg-slate-800/50">
+                            {% if projeto.imagem %}
+                                <img src="{{ projeto.imagem.url }}" alt="{{ projeto.titulo }}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">
+                            {% else %}
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <i class="fas fa-code text-4xl text-emerald-500/20"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                                <a href="{{ projeto.link_github }}" target="_blank" class="text-white mono text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                                    Explorar Código <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="text-xl font-bold text-white uppercase tracking-tight">{{ projeto.titulo }}</h5>
+                            <a href="{{ projeto.link_github }}" class="text-slate-500 hover:text-emerald-400 transition"><i class="fab fa-github"></i></a>
+                        </div>
+                        
+                        <p class="text-slate-400 text-sm font-light leading-relaxed mb-8 flex-grow">
+                            {{ projeto.descricao }}
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            {% for tech in projeto.tecnologias.split %}
+                            <span class="mono text-[9px] bg-emerald-500/5 px-3 py-1 rounded-full border border-white/5 text-emerald-400 uppercase font-bold">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center col-span-full mono text-lg text-slate-700 italic">No project data available in the current environment.</p>
                 {% endfor %}
-            {% endif %}
-
-            <form action="{% url 'home' %}" method="POST" class="grid grid-cols-1 gap-4 text-left">
-                {% csrf_token %}
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" name="nome" placeholder="Nome Completo" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white">
-                    <input type="email" name="email" placeholder="E-mail de Contato" required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white">
-                </div>
-                <textarea name="mensagem" rows="4" placeholder="Descreva sua necessidade técnica..." required class="bg-slate-900/60 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-emerald-500 transition text-sm text-white"></textarea>
-                <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-[#0f172a] font-black py-4 rounded-xl transition shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
-                    Confirmar Envio [POST]
-                </button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-slate-500 text-[10px] font-bold tracking-[0.3em] border-t border-slate-800/50 uppercase">
-        <p>&copy; 2026 Matheus Junior B. L. Pinho • <span class="text-emerald-500 italic">Backend Systems Specialist</span></p>
+    <section id="contato" class="py-40 px-6">
+        <div class="max-w-4xl mx-auto reveal">
+            <div class="glass-card p-12 md:p-24 rounded-[4rem] border-white/10 text-center relative overflow-hidden">
+                <div class="absolute -top-32 -left-32 w-80 h-80 bg-emerald-500/10 blur-[100px] rounded-full"></div>
+                
+                <h4 class="text-6xl font-bold text-white tracking-tighter italic uppercase mb-6">Iniciar Conexão</h4>
+                <p class="text-slate-300 text-xl font-light mb-16">Vamos construir a próxima geração do seu produto digital.</p>
+
+                <form action="{% url 'home' %}" method="POST" class="grid gap-6 text-left">
+                    {% csrf_token %}
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" name="nome" placeholder="Seu Nome Completo" required class="bg-white/5 border border-white/10 rounded-2xl px-8 py-6 outline-none focus:border-emerald-500 transition text-lg text-white">
+                        <input type="email" name="email" placeholder="Professional Email" required class="bg-white/5 border border-white/10 rounded-2xl px-8 py-6 outline-none focus:border-emerald-500 transition text-lg text-white">
+                    </div>
+                    <textarea name="mensagem" rows="5" placeholder="Como posso ajudar?" required class="bg-white/5 border border-white/10 rounded-2xl px-8 py-6 outline-none focus:border-emerald-500 transition text-lg text-white"></textarea>
+                    <button type="submit" class="bg-emerald-500 text-slate-950 font-black py-8 rounded-full uppercase mono tracking-widest text-sm hover:shadow-[0_15px_40px_rgba(16,185,129,0.4)] transition-all transform hover:scale-[1.02] active:scale-95">
+                        Enviar Requisição
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 text-center border-t border-white/5">
+        <p class="mono text-xs uppercase tracking-[1em] text-slate-600 mb-4">
+            &copy; 2026 Matheus Junior // Full Stack Engineer // Cuiabá-MT
+        </p>
     </footer>
 
     <script>
-        setTimeout(function() {
-            const messages = document.querySelectorAll('.django-message');
-            messages.forEach(msg => {
-                msg.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-                msg.style.opacity = "0";
-                msg.style.transform = "translateY(-10px)";
-                setTimeout(() => msg.remove(), 600);
-            });
-        }, 5000);
-    </script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
+        const text = "Junior";
+        const target = document.getElementById('typewriter');
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                target.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 200);
+            }
+        }
+        window.onload = type;
+
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) {
+                    reveal.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
