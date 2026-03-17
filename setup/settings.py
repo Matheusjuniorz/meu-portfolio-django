@@ -4,6 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SEGURANÇA: DEBUG deve ser False em produção no Render
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-3jx#j2)!-j7lb*ed8ot9=&iyrmv=)*-x4-94@^1&@gnxnr+0yu')
@@ -22,14 +23,6 @@ INSTALLED_APPS = [
     'core',
 ]
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dz9vstghh',
-    'API_KEY': '279659749852188',
-    'API_SECRET': 'FxzCn0zvyScrU3pUaGTwkpC_-ag'
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
@@ -42,18 +35,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'setup.urls'
-
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 TEMPLATES = [
     {
@@ -74,12 +55,34 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
-
+# BANCO DE DADOS: Configurado para ler a DATABASE_URL do Render automaticamente
 DATABASES = {
     'default': dj_database_url.config(
+        default='postgres://user:password@external-host-address/dbname',
         conn_max_age=600,
         conn_health_checks=True,
     )
+}
+
+# CONFIGURAÇÃO DE ARMAZENAMENTO (Django 6.0+)
+# Usamos StaticFilesStorage simples para evitar o erro de FileNotFoundError no build
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+# Compatibilidade para bibliotecas que ainda buscam nomes antigos
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dz9vstghh',
+    'API_KEY': '279659749852188',
+    'API_SECRET': 'FxzCn0zvyScrU3pUaGTwkpC_-ag'
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -94,15 +97,15 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
+# ARQUIVOS ESTÁTICOS E MÍDIA
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core/static')]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# E-MAIL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -112,6 +115,3 @@ EMAIL_HOST_PASSWORD = 'lnez omcn juuv pqly'
 DEFAULT_FROM_EMAIL = 'batistam032@gmail.com'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-ROOT_URLCONF = 'setup.urls'
-WSGI_APPLICATION = 'setup.wsgi.application'
